@@ -12,10 +12,8 @@ const maxAttempts = 10;
 
 // A mix of cute and funny emojis
 const faces = [
-  "🐱", "😜", "😝", "😛", "🤭",
-  "🙃", "😆", "😂", "😎", "🥳"
+  "🐱", "😹", "🤪", "🙈", "🦄", "🐸", "👻", "🐹", "🥳", "😎"
 ];
-
 
 const messages = [
   "Catch me!",
@@ -42,56 +40,35 @@ function startGame() {
 }
 
 // --- Game Logic ---
-const isTouch = 'ontouchstart' in window;
+character.addEventListener('mouseover', () => {
+  if (attempts >= maxAttempts) {
+    endGame();
+    return;
+  }
 
-// Handle both touch and mouse interactions
-const interactionEvents = ['mouseover', 'touchstart'];
+  attempts++;
 
-interactionEvents.forEach(eventType => {
-  character.addEventListener(eventType, (e) => {
-    // Prevent double-firing on hybrid devices (touch might trigger mouseover)
-    if (e.type === 'touchstart') {
-      e.preventDefault(); // Prevents simulated mouse events
-    }
+  // Play sound
+  boingSound.currentTime = 0;
+  boingSound.play();
 
-    e.preventDefault();
-    if (attempts >= maxAttempts) {
-      endGame();
-      return;
-    }
+  // Change Emoji & Message
+  charEmoji.innerText = faces[attempts % faces.length];
+  speechBubble.innerText = messages[attempts % messages.length];
+  speechBubble.style.opacity = 1;
 
-    attempts++;
+  // Move
+  moveCharacter();
 
-    // Play sound
-    boingSound.currentTime = 0;
-    boingSound.play();
-
-    // Change Emoji & Message
-    //charEmoji.innerText = faces[attempts % faces.length];
-    charEmoji.innerText = faces[Math.min(attempts - 1, faces.length - 1)];
-    speechBubble.innerText = messages[attempts % messages.length];
-    speechBubble.style.opacity = 1;
-
-    // Move
-    moveCharacter();
-
-    // Hide speech bubble after a bit
-    setTimeout(() => {
-      speechBubble.style.opacity = 0;
-    }, 800);
-
-  }); // Close event listener
+  // Hide speech bubble after a bit
+  setTimeout(() => {
+    speechBubble.style.opacity = 0;
+  }, 800);
 });
 
-// function moveCharacter() {
-//   const x = Math.random() * (window.innerWidth - 150);
-//   const y = Math.random() * (window.innerHeight - 150);
 function moveCharacter() {
-  const charWidth = character.offsetWidth || 150; // Fallback to 150 if hidden/0
-  const charHeight = character.offsetHeight || 150;
-
-  const x = Math.random() * (window.innerWidth - charWidth);
-  const y = Math.random() * (window.innerHeight - charHeight);
+  const x = Math.random() * (window.innerWidth - 150);
+  const y = Math.random() * (window.innerHeight - 150);
 
   character.style.left = `${x}px`;
   character.style.top = `${y}px`;
@@ -117,22 +94,10 @@ function resetGame() {
 }
 
 // --- Effects ---
-['mousemove', 'touchmove'].forEach(eventType => {
-  document.addEventListener(eventType, (e) => {
-    let clientX, clientY;
-
-    if (e.type === 'touchmove') {
-      clientX = e.touches[0].clientX;
-      clientY = e.touches[0].clientY;
-    } else {
-      clientX = e.clientX;
-      clientY = e.clientY;
-    }
-
-    if (Math.random() > 0.8) {
-      createSparkle(clientX, clientY);
-    }
-  });
+document.addEventListener('mousemove', (e) => {
+  if (Math.random() > 0.8) {
+    createSparkle(e.clientX, e.clientY);
+  }
 });
 
 function createSparkle(x, y) {

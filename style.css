@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
-/* body {
+body {
   margin: 0;
   height: 100vh;
   display: flex;
@@ -12,19 +12,7 @@
   font-family: 'Fredoka One', cursive;
   overflow: hidden;
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" style="fill:black;font-size:24px;"><text y="50%">🐾</text></svg>') 16 16, auto;
-} */
- body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #ff9a9e, #fecfef);
-  font-family: 'Fredoka One', cursive;
-  overflow: hidden;
-  cursor: default; /* mobile */
 }
-
 
 /* --- Animated Background --- */
 .circles {
@@ -153,7 +141,7 @@
 }
 
 /* --- Start Screen: Gift Box --- */
-/* #start-screen {
+#start-screen {
   position: absolute;
   z-index: 100;
   text-align: center;
@@ -181,33 +169,15 @@
   border-radius: 50px;
   backdrop-filter: blur(5px);
   border: 2px solid rgba(255, 255, 255, 0.5);
-} */
-/* --- Revised Start Screen: Gift Box --- */
-#start-screen {
-  text-align: center;
-  padding: 20px;
 }
-
-.emoji-icon {
-  font-size: 90px;
-  animation: float 3s ease-in-out infinite;
-}
-
-.instruction {
-  margin-top: 15px;
-  font-size: 18px;
-  padding: 10px 20px;
-  border-radius: 30px;
-}
-
 
 /* --- Game: The Character --- */
-/* #character {
+#character {
   position: absolute;
   width: 150px;
   height: 150px;
   display: none;
-  
+  /* Hidden initially */
   justify-content: center;
   align-items: center;
   user-select: none;
@@ -247,41 +217,10 @@
   border-width: 10px 10px 10px 0;
   border-style: solid;
   border-color: transparent white transparent transparent;
-} */
-/* --- Revised Game: The Character --- */
-#character {
-  width: 90px;
-  height: 90px;
 }
-
-#char-emoji {
-  font-size: 70px;
-}
-
-#speech-bubble {
-  font-size: 13px;
-  padding: 6px 10px;
-  left: 55%;
-}
-#character {
-  width: 90px;
-  height: 90px;
-}
-
-#char-emoji {
-  font-size: 70px;
-}
-
-#speech-bubble {
-  font-size: 13px;
-  padding: 6px 10px;
-  left: 55%;
-}
-
-
 
 /* --- End Screen: Message --- */
-/* #message-container {
+#message-container {
   display: none;
   position: absolute;
   text-align: center;
@@ -328,29 +267,7 @@ p {
 .replay-btn:hover {
   transform: scale(1.05) translateY(-3px);
   box-shadow: 0 10px 20px rgba(255, 107, 107, 0.6);
-} */
-
-/* --- Revised End Screen: Message --- */
-.card {
-  width: 90vw;
-  max-width: 350px;
-  padding: 20px;
-  border-radius: 25px;
 }
-
-h1 {
-  font-size: 1.8rem;
-}
-
-p {
-  font-size: 1.05rem;
-}
-
-.replay-btn {
-  font-size: 1rem;
-  padding: 10px 22px;
-}
-
 
 /* --- Animations --- */
 @keyframes float {
@@ -464,61 +381,5 @@ p {
 
   50% {
     transform: translateY(-6px);
-  }
-}
-
-/* 📱➡️💻 Tablet */
-@media (min-width: 600px) {
-
-  .emoji-icon {
-    font-size: 120px;
-  }
-
-  #character {
-    width: 120px;
-    height: 120px;
-  }
-
-  #char-emoji {
-    font-size: 95px;
-  }
-
-  .card {
-    max-width: 500px;
-    padding: 35px;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-  }
-}
-
-/* 💻 Desktop */
-@media (min-width: 900px) {
-
-  body {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><text y="50%">🐾</text></svg>') 16 16, auto;
-  }
-
-  .emoji-icon {
-    font-size: 150px;
-  }
-
-  #character {
-    width: 150px;
-    height: 150px;
-  }
-
-  #char-emoji {
-    font-size: 120px;
-  }
-
-  .card {
-    max-width: 700px;
-    padding: 50px;
-  }
-
-  h1 {
-    font-size: 3.5rem;
   }
 }
