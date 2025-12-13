@@ -40,7 +40,17 @@ function startGame() {
 }
 
 // --- Game Logic ---
-character.addEventListener('mouseover', () => {
+
+
+// Handle both touch and mouse interactions
+['mouseover', 'touchstart'].forEach(eventType => {
+  character.addEventListener(eventType, (e) => {
+    if (e.type === 'touchstart') e.preventDefault(); // Prevent ghost mouse clicks
+    handleInteraction();
+  });
+});
+
+function handleInteraction() {
   if (attempts >= maxAttempts) {
     endGame();
     return;
@@ -53,7 +63,7 @@ character.addEventListener('mouseover', () => {
   boingSound.play();
 
   // Change Emoji & Message
-  charEmoji.innerText = faces[attempts % faces.length];
+  charEmoji.innerText = faces[Math.min(attempts, faces.length - 1)];
   speechBubble.innerText = messages[attempts % messages.length];
   speechBubble.style.opacity = 1;
 
@@ -64,11 +74,14 @@ character.addEventListener('mouseover', () => {
   setTimeout(() => {
     speechBubble.style.opacity = 0;
   }, 800);
-});
+}
 
 function moveCharacter() {
-  const x = Math.random() * (window.innerWidth - 150);
-  const y = Math.random() * (window.innerHeight - 150);
+  const charWidth = character.offsetWidth || 150;
+  const charHeight = character.offsetHeight || 150;
+
+  const x = Math.random() * (window.innerWidth - charWidth);
+  const y = Math.random() * (window.innerHeight - charHeight);
 
   character.style.left = `${x}px`;
   character.style.top = `${y}px`;
@@ -94,10 +107,21 @@ function resetGame() {
 }
 
 // --- Effects ---
-document.addEventListener('mousemove', (e) => {
-  if (Math.random() > 0.8) {
-    createSparkle(e.clientX, e.clientY);
-  }
+['mousemove', 'touchmove'].forEach(eventType => {
+  document.addEventListener(eventType, (e) => {
+    let clientX, clientY;
+    if (e.type === 'touchmove') {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+
+    if (Math.random() > 0.8) {
+      createSparkle(clientX, clientY);
+    }
+  });
 });
 
 function createSparkle(x, y) {
