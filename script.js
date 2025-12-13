@@ -12,7 +12,8 @@ const maxAttempts = 10;
 
 // A mix of cute and funny emojis
 const faces = [
-  "🐱", "😹", "🤪", "🙈", "🦄", "🐸", "👻", "🐹", "🥳", "😎"
+  "🐱", "😜", "😝", "😛", "🤭",
+  "🙃", "😆", "😂", "😎", "🥳"
 ];
 
 const messages = [
@@ -63,7 +64,7 @@ function handleInteraction() {
   boingSound.play();
 
   // Change Emoji & Message
-  charEmoji.innerText = faces[Math.min(attempts, faces.length - 1)];
+  charEmoji.innerText = faces[Math.min(attempts - 1, faces.length - 1)];
   speechBubble.innerText = messages[attempts % messages.length];
   speechBubble.style.opacity = 1;
 
