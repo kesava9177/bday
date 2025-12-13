@@ -65,7 +65,7 @@ function handleInteraction() {
 
   // Change Emoji & Message
   charEmoji.innerText = faces[Math.min(attempts - 1, faces.length - 1)];
-  speechBubble.innerText = messages[attempts % messages.length];
+  speechBubble.innerText = messages[Math.min(attempts - 1, messages.length - 1)];
   speechBubble.style.opacity = 1;
 
   // Move
