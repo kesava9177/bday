@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Surprise for Divya! 🎁</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Animated Background -->
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+  <!-- Start Screen -->
+  <div id="start-screen" onclick="startGame()">
+    <div class="emoji-icon">🎁</div>
+    <div class="instruction">Click to Open!</div>
+  </div>
+
+  <!-- The Character (Emoji) -->
+  <div id="character">
+    <div id="speech-bubble">Meow!</div>
+    <div id="char-emoji">🐱</div>
+  </div>
+
+  <!-- Win Message -->
+  <!-- <div id="message-container">
+    <div class="card">
+      <h1>Happy Birthday Divya! 🎉</h1>
+      <p>Wishing you a day filled with joy, laughter, and lots of cake! 🎂</p>
+      <button class="replay-btn" onclick="resetGame()">Play Again ↺</button>
+    </div>
+  </div> -->
+
+  <div id="message-container">
+    <div class="card">
+      <h1>🎉 Happy Birthday Divya! 🎂</h1>
+
+      <p>
+        You finally caught me 😆<br>
+        Hope your day is filled with<br>
+        💖 smiles &nbsp; 🎁 surprises &nbsp; 🍰 cake!
+      </p>
+
+      <p style="font-size: 20px; margin-top: 10px;">
+        Stay happy, stay cute, and keep shining ✨
+      </p>
+
+      <div class="sticker-row">
+        🎈 🎊 🥳 💖 ✨
+      </div>
+
+      <button class="replay-btn" onclick="resetGame()">Play Again ↺</button>
+    </div>
+  </div>
+
+
+  <!-- Audio Assets -->
+  <audio id="boing" src="https://www.myinstants.com/media/sounds/pop.mp3"></audio>
+  <audio id="win-sound" src="https://www.myinstants.com/media/sounds/tada_1.mp3"></audio>
+  <audio id="bg-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-ukulele.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
