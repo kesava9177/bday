@@ -33,7 +33,7 @@ const messages = [
 function startGame() {
   startScreen.style.display = 'none';
   character.style.display = 'flex';
-
+  speechBubble.style.opacity = '1';
   bgMusic.volume = 0.3;
   bgMusic.play().catch(e => console.log("Audio play failed:", e));
 
